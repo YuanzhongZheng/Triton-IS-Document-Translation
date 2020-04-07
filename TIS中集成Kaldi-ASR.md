@@ -1,6 +1,6 @@
 # TIS中集成Kaldi-ASR
 
-TIS提供了基于自定义的Kaldi-ASR后端，它可以将高性能云推理应用在Kaldi-ASR模型，其中包括TIS和客户端之间的gRPC通信，以及推理请求的批处理。代码库由NVIDIA测试和维护。
+TIS提供了基于个性化定制的Kaldi-ASR后端，它可以将高性能云推理应用在Kaldi-ASR模型，其中包括TIS和客户端之间的gRPC通信，以及推理请求的批处理。代码库由NVIDIA测试和维护。
 
 ## 目录
 
@@ -215,10 +215,10 @@ The latency is defined such as `latency = t1 - t0`.
 
 Our results were obtained by:
 
-1. Building and starting the server as described in [Quick Start Guide](#quick-start-guide).
-2. Running  `scripts/run_inference_all_v100.sh` and  `scripts/run_inference_all_t4.sh`
+1. Building and starting the server as described in [快速上手](#快速上手).
+2. 运行  `scripts/run_inference_all_v100.sh` 和  `scripts/run_inference_all_t4.sh`
 
-| GPU | Realtime I/O | Number of parallel audio channels | Throughput (RTFX) | Latency | | | |
+| GPU | Realtime I/O | 音频通道数 | 吞吐量 (RTFX) | 延迟 | | | |
 | ------ | ------ | ------ | ------ | ------ | ------ | ------ |------ |
 | | | | | 90% | 95% | 99% | Avg |
 | V100 | No | 2000 | 1769.8 | N/A | N/A | N/A | N/A |
