@@ -1,6 +1,6 @@
 # TIS中集成Kaldi-ASR
 
-TIS提供了基于个性化定制的Kaldi-ASR后端，它可以将高性能云推理应用在Kaldi-ASR模型，其中包括TIS和客户端之间的gRPC通信，以及推理请求的批处理。代码库由NVIDIA测试和维护。
+TIS提供了个性化定制的Kaldi-ASR后端，它可以将高性能云推理应用在Kaldi-ASR模型，其中包括TIS和客户端之间的gRPC通信，以及推理请求的批处理。NVIDIA团队负责测试和维护代码库。
 
 ## 目录
 
@@ -60,10 +60,9 @@ NVIDIA提供了一个基于`LibriSpeech`的预训练的模型，使得大家可�
 
 ### 必需项 
 
-This repository contains Dockerfiles which extends the Kaldi and TensorRT Inference Server NVIDIA GPU Cloud (NGC) containers and encapsulates some dependencies. Aside from these dependencies, ensure you have [NVIDIA Docker](https://github.com/NVIDIA/nvidia-docker) installed.
+这个代码库有两个镜像文件，它们封装了Kaldi，TIS和一些依赖项。除了上述必需项，请确保已安装 [NVIDIA Docker](https://github.com/NVIDIA/nvidia-docker)。
 
-
-For more information about how to get started with NGC containers, see the following sections from the NVIDIA GPU Cloud Documentation and the Deep Learning Documentation:
+如果想更快上手NGC容器，可以参考以下NGC文档：
 -   [Getting Started Using NVIDIA GPU Cloud](https://docs.nvidia.com/ngc/ngc-getting-started-guide/index.html)
 -   [Accessing And Pulling From The NGC Container Registry](https://docs.nvidia.com/deeplearning/dgx/user-guide/index.html#accessing_registry)
 
