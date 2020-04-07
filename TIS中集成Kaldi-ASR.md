@@ -43,9 +43,9 @@ A reference model is used by all test scripts and benchmarks presented in this r
 
 ### 默认配置
 
-Details about parameters can be found in the [Parameters](#parameters) section.
+关于参数的详细信息请见[参数](#参数) 部分.
 
-* `model path`: Configured to use the pretrained LibriSpeech model.
+* `model path`: 利用预训练好的ibriSpeech模型进行配置
 * `beam`: 10
 * `lattice_beam`: 7
 * `max_active`: 10,000
@@ -70,36 +70,36 @@ For more information about how to get started with NGC containers, see the follo
 
 ## 快速上手
 
-1. Clone the repository.
+1. 从云端复制代码。
  
 ```
 git clone https://github.com/NVIDIA/DeepLearningExamples.git
 cd DeepLearningExamples/Kaldi/SpeechRecognition
 ```
 
-2. Build the client and server containers.
+2. 编译客户端与服务端的容器。
  
 `scripts/docker/build.sh`
 
-3. Download and set up the pre-trained model and eval dataset.
+3. 下载和安装预训练模型和数据集。
 
 `scripts/docker/launch_download.sh`
 
-The model and dataset are downloaded in the `data/` folder.
+模型和数据集被下载到 `data/` 文件夹.
 
-4. Start the server.
+4. 启动服务端.
 
 `scripts/docker/launch_server.sh`
 
-Once you see the line `Starting Metrics Service at 0.0.0.0:8002`, the server is ready to be used. You can then start the client.
+一旦看到 `Starting Metrics Service at 0.0.0.0:8002`，说明服务端已经成功启动，接下来就可以启动客户端。
 
-Currently, multi-GPU is not supported. By default GPU 0 is used. You can use a specific GPU by using `NVIDIA_VISIBLE_DEVICES`:
+目前, 并不支持多GPU模式，默认用GPU 0。你也可以通过`NVIDIA_VISIBLE_DEVICES`来指定具体GPU:
 
 `NVIDIA_VISIBLE_DEVICES=<GPUID> scripts/docker/launch_server.sh`
 
-5. Start the client.
+5. 启动客户端.
 
-The following command will stream 1000 parallel streams to the server. The `-p` option prints the inferred `TEXT` sent back from the server. 
+下面这个脚本会向服务器发出1000个并行流请求，`-p` 选项会打印从服务器发挥的推理`TEXT`：
 
 `scripts/docker/launch_client.sh -p`
 
@@ -194,31 +194,29 @@ The models and Kaldi allocators are currently not shared between instances. This
 
 ### 指标
 
-Throughput is measured using the RTFX metric. It is defined such as : `RTFX = (number of seconds of audio inferred) / (compute time in seconds)`. It is the inverse of the RTF (Real Time Factor) metric, such as `RTFX = 1/RTF`.
+吞吐量使用RTFX来衡量，RTFX的定义为: `RTFX = (已推断的音频时长) / (服务计算耗费的时间)`. 它是RTF的倒数： `RTFX = 1/RTF`.
 
-Latency is defined as the delay between the availability of the last chunk of audio and the reception of the inferred text. More precisely, it is defined such as :
+最后一个可用音频块和推断文本的接收之间的时间差被定义为延迟，更详细地表述如下：
 
-1. *Client:* Last audio chunk available
+1. *客户端:* 最后一个可用音频块
 2. ***t0** <- Current time*
-3. *Client:* Send last audio chunk
-4. *Server:* Compute inference of last chunk
-5. *Server:* Generate the raw lattice for the full utterance
-6. *Server:* Determinize the raw lattice
-7. *Server:* Generate the text output associated with the best path in the determinized lattice
-8. *Client:* Receive text output
-9. *Client:* Call callback with output
+3. *客户端:* 发送最后一个可用音频块到服务端
+4. *服务端:* 对最后一个可用音频块进行计算推理
+5. *服务端:* 对整句话生成原始lattice结构
+6. *服务端:* 确定原始lattice结构
+7. *服务端:* 在原始lattice结构中生成最佳输出文本
+8. *客户端:* 接收文本输出
+9. *客户端:* 对输出结果进行回调
 10. ***t1** <- Current time*  
 
-The latency is defined such as `latency = t1 - t0`.
+延迟定义为： `latency = t1 - t0`.
 
 ### 结果
 
-Our results were obtained by:
+1. 参考[快速上手](#快速上手)进行编译和运行服务；
+2. 运行  `scripts/run_inference_all_v100.sh` 和  `scripts/run_inference_all_t4.sh`。
 
-1. Building and starting the server as described in [快速上手](#快速上手).
-2. 运行  `scripts/run_inference_all_v100.sh` 和  `scripts/run_inference_all_t4.sh`
-
-| GPU | Realtime I/O | 音频通道数 | 吞吐量 (RTFX) | 延迟 | | | |
+| GPU | Realtime I/O | 音频并行通道数 | 吞吐量 (RTFX) | 延迟 | | | |
 | ------ | ------ | ------ | ------ | ------ | ------ | ------ |------ |
 | | | | | 90% | 95% | 99% | Avg |
 | V100 | No | 2000 | 1769.8 | N/A | N/A | N/A | N/A |
@@ -239,3 +237,4 @@ Our results were obtained by:
 ### 已知缺陷
 
 虽然基准测试脚本中使用的参考模型需要mfcc和iVector才能达到最佳准确率，但是目前只支持mfcc特征。未来的版本中将添加对iVector的支持。
+P.S. 貌似最新版本已经支持iVector了，但代码还没有合进来
