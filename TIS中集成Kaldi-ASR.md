@@ -99,7 +99,7 @@ cd DeepLearningExamples/Kaldi/SpeechRecognition
 
 5. 启动客户端.
 
-下面这个脚本会向服务器发出1000个并行流请求，`-p` 选项会打印从服务器发挥的推理`TEXT`：
+下面这个脚本会向服务器发出1000个并行流请求，`-p` 选项会打印从服务器发回的推理结果(`TEXT`)：
 
 `scripts/docker/launch_client.sh -p`
 
