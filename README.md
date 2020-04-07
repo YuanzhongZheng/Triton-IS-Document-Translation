@@ -3,5 +3,5 @@
 
 ##Topic 1: TIS中集成Kaldi-ASR
 
-项目源码：[DeepLearningExamples/Kaldi/SpeechRecognition] (https://github.com/NVIDIA/DeepLearningExamples/tree/master/Kaldi/SpeechRecognition)
+项目源码：[DeepLearningExamples/Kaldi/SpeechRecognition](https://github.com/NVIDIA/DeepLearningExamples/tree/master/Kaldi/SpeechRecognition)
 
