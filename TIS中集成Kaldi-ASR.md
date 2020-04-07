@@ -60,7 +60,7 @@ NVIDIA提供了一个基于`LibriSpeech`的预训练的模型，使得大家可�
 
 ### 必需项 
 
-这个代码库有两个镜像文件，它们封装了Kaldi，TIS和一些依赖项。除了上述必需项，请确保已安装 [NVIDIA Docker](https://github.com/NVIDIA/nvidia-docker)。
+这个代码库有两个镜像文件，它们封装了Kaldi，TIS和一些依赖项。另外，请确保已安装 [NVIDIA Docker](https://github.com/NVIDIA/nvidia-docker)。
 
 如果想更快上手NGC容器，可以参考以下NGC文档：
 -   [Getting Started Using NVIDIA GPU Cloud](https://docs.nvidia.com/ngc/ngc-getting-started-guide/index.html)
@@ -107,11 +107,11 @@ cd DeepLearningExamples/Kaldi/SpeechRecognition
 
 ### 参数
 
-The configuration is done through the `config.pbtxt` file available in `model-repo/` directory. It allows you to specify the following:
+通过`model-repo/` 文件夹的 `config.pbtxt` 文件来进行参数的配置，用户可以自定义以下选项：
 
 ####  模型路径
 
-The following parameters can be modified if you want to use your own Kaldi model. 
+下列参数都可以改为用户自己的Kaldi模型参数：
 
 * `mfcc_filename`
 * `ivector_filename`
@@ -121,7 +121,7 @@ The following parameters can be modified if you want to use your own Kaldi model
 
 #### 模型配置
 
-The model configuration parameters are passed to the model and have  an impact on both accuracy and performance. The model parameters are usually Kaldi ASR parameters, meaning, if they are, you can reuse the values that are currently being used in the CPU Kaldi ASR pipeline. 
+模型配置参数传输给模型并对准确率和性能有一定的影响。模型参数通常是Kaldi-ASR的参数，这意味着你可以复用Kaldi-ASR在CPU上的参数。
 
 * `beam`
 * `lattice_beam`
@@ -131,9 +131,9 @@ The model configuration parameters are passed to the model and have  an impact o
 
 #### 推理引擎配置
 
-The inference engine configuration parameters configure the inference engine. They impact performance, but not accuracy.
+推理引擎参数用来配置TIS中的推理引擎，它们只影响性能，不影响准确率。
 
-* `max_batch_size`: The maximum number of inference channels opened at a given time. If set to `4096`, then one instance will handle at most 4096 concurrent users.
+* `max_batch_size`: 给定时间内的最大推理通道数。假如值为`4096`，那么一个实例将最多处理4096个并发请求。
 * `num_worker_threads`: The number of CPU threads for the postprocessing CPU tasks, such as lattice determinization and text generation from the lattice.
 * `max_execution_batch_size`: The size of one execution batch on the GPU. This parameter should be set as large as necessary to saturate the GPU, but not bigger. Larger batches will lead to a higher throughput, smaller batches to lower latency. 
 * `input.WAV_DATA.dims`: The maximum number of samples per chunk. The value must be a multiple of `frame_subsampling_factor * chunks_per_frame`.
@@ -160,7 +160,7 @@ The client can be configured through a set of parameters that define its behavio
 
 ### 输入、输出
 
-The API is currently experimental.
+API还处于实验阶段……
 
 #### 输入
 
