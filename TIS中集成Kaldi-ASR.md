@@ -18,7 +18,7 @@ TIS提供了基于个性化定制的Kaldi-ASR后端，它可以将高性能云�
       * [推理引擎配置](#推理引擎配置)
   * [推理过程](#推理过程)
   * [客户端命令行参数](#客户端命令行参数)
-   * [输入/输出](#输入输出)
+   * [输入、输出](#输入输出)
      * [输入](#输入)
      * [输出](#输出)
    * [解析自定义Kaldi-ASR的模型](#解析自定义Kaldi-ASR的模型)
@@ -31,11 +31,11 @@ TIS提供了基于个性化定制的Kaldi-ASR后端，它可以将高性能云�
 
 ## 解决方案概述
 
-这套代码基于[GPU-Accelerated Viterbi Exact Lattice Decoder for Batched Online and Offline Speech Recognition](https://arxiv.org/abs/1910.10032)实现了在线GPU加速的ASR流程的容器。容器内部含有一个基于GPU的高性能HMM解码器，一个低延迟的神经网络驱动，用于预处理的快速特征提取模块，以及一套基于GPU的ASR流程。上述这些不同的模块已经集成进Kaldi-ASR的框架中。
+这套代码基于论文（[GPU-Accelerated Viterbi Exact Lattice Decoder for Batched Online and Offline Speech Recognition](https://arxiv.org/abs/1910.10032)）实现了在线GPU加速的ASR流程的容器。容器内部含有一个基于GPU的高性能HMM解码器，一个低延迟的神经网络驱动，用于预处理的快速特征提取模块，以及一套基于GPU的ASR流程。上述这些不同的模块已经集成进Kaldi-ASR的框架中。
 
 这套代码同时基于Kaldi-ASR框架，实现了一套基于TIS的自定义后端，自定义后端可以在Kaldi-ASR框架中以高性能调用GPU流程。 TIS为Kaldi ASR推理提供了gRPC流式服务，动态序列批处理和多实例支持的易用性。同时，一个客户端用来实现连接gRPC服务器，发送音频流数据到服务器，接收推理后的结果。(参考 [输入、输出](#输入、输出)).  你可以在此[链接](https://docs.nvidia.com/deeplearning/sdk/tensorrt-inference-server-guide/docs/)中获取更多信息。
 
-This TensorRT Inference Server integration is meant to be used with the LibriSpeech model for demonstration purposes. We include a pre-trained version of this model to allow you to easily test this work (see [Quick Start Guide](#quick-start-guide)). Both the TensorRT Inference Server integration and the underlying Kaldi ASR online GPU pipeline are a work in progress and will support more functionalities in the future. This includes online iVectors not currently supported in the Kaldi ASR GPU online pipeline and being replaced by a zero vector (see [Known issues](#known-issues)). Support for a custom Kaldi model is experimental (see [Using a custom Kaldi model](#using-custom-kaldi-model)).
+NVIDIA提供了一个基于LibriSpeech的预训练的模型，使得大家可以轻松上手演示和测试(参考 [快速上手](#快速上手))。目前TIS的集成工作和Kaldi-ASR在线GPU流程模型工作还在开发阶段，未来NVIDIA会支持更多功能。比如这个版本并不支持i-vector在Kaldi-ASR在线GPU流程中运行，目前版本中，i-vector被零向量所暂时替换(参考 [已知缺陷](#已知缺陷))。是否支持自定义的其它Kaldi模型还在试验中 (参考 [解析自定义Kaldi-ASR的模型](#解析自定义Kaldi-ASR的模型)).
 
 ### 参考模型
 
@@ -237,4 +237,5 @@ The models and Kaldi allocators are currently not shared between instances. This
 ### 已知缺陷
 
 虽然基准测试脚本中使用的参考模型需要mfcc和iVector才能达到最佳准确率，但是目前只支持mfcc特征。未来的版本中将添加对iVector的支持。
+
 P.S. 貌似最新版本已经支持iVector了，但代码还没有合进来
