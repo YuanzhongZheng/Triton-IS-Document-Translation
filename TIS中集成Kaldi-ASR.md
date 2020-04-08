@@ -134,7 +134,7 @@ cd DeepLearningExamples/Kaldi/SpeechRecognition
 推理引擎参数用来配置TIS中的推理引擎，它们只影响性能，不影响准确率。
 
 * `max_batch_size`: 给定时间内的最大推理通道数。假如值为`4096`，那么一个实例将最多处理4096个并发请求。
-* `num_worker_threads`: CPU进行后处理的线程数，比如生成原始lattice结构以及从lattice结构中生成文本。
+* `num_worker_threads`: CPU进行后处理时的线程数，比如生成原始lattice结构以及从lattice结构中生成文本。
 * `max_execution_batch_size`: GPU上的单个批尺寸大小。该参数的设定应满足恰好使GPU满负荷。批尺寸越大，吞吐量越高，但延迟会越高。
 * `input.WAV_DATA.dims`: 每个语音数据块包含的最大采样点，必须是`frame_subsampling_factor * chunks_per_frame`的整数倍。
 
@@ -237,4 +237,4 @@ The models and Kaldi allocators are currently not shared between instances. This
 
 虽然基准测试脚本中使用的参考模型需要mfcc和iVector才能达到最佳准确率，但是目前只支持mfcc特征。未来的版本中将添加对iVector的支持。
 
-P.S. 貌似最新版本已经支持iVector了，但代码还没有合进来
+P.S. 貌似最新版本已经支持iVector了，但代码还没有合入官方
