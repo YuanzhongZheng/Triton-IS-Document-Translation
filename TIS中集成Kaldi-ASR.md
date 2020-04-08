@@ -60,9 +60,9 @@ NVIDIA提供了一个基于`LibriSpeech`的预训练的模型，使得大家可�
 
 ### 必需项 
 
-这个代码库有两个镜像文件，它们封装了Kaldi，TIS和一些依赖项。另外，请确保已安装 [NVIDIA Docker](https://github.com/NVIDIA/nvidia-docker)。
+代码库有两个镜像文件，它们封装了Kaldi，TIS和一些依赖项。另外，请确保已安装[NVIDIA Docker](https://github.com/NVIDIA/nvidia-docker)。
 
-如果想更快上手NGC容器，可以参考以下NGC文档：
+如果想更快上手NGC容器，可以参考官方NGC文档：
 -   [Getting Started Using NVIDIA GPU Cloud](https://docs.nvidia.com/ngc/ngc-getting-started-guide/index.html)
 -   [Accessing And Pulling From The NGC Container Registry](https://docs.nvidia.com/deeplearning/dgx/user-guide/index.html#accessing_registry)
 
@@ -107,11 +107,11 @@ cd DeepLearningExamples/Kaldi/SpeechRecognition
 
 ### 参数
 
-通过`model-repo/` 文件夹的 `config.pbtxt` 文件来进行参数的配置，用户可以自定义以下选项：
+通过`model-repo/` 文件夹的 `config.pbtxt` 来进行参数的配置，用户可以自定义以下选项：
 
 ####  模型路径
 
-下列参数都可以改为用户自己的Kaldi模型参数：
+下列参数都可以替换成用户自己的Kaldi模型：
 
 * `mfcc_filename`
 * `ivector_filename`
@@ -134,9 +134,9 @@ cd DeepLearningExamples/Kaldi/SpeechRecognition
 推理引擎参数用来配置TIS中的推理引擎，它们只影响性能，不影响准确率。
 
 * `max_batch_size`: 给定时间内的最大推理通道数。假如值为`4096`，那么一个实例将最多处理4096个并发请求。
-* `num_worker_threads`: The number of CPU threads for the postprocessing CPU tasks, such as lattice determinization and text generation from the lattice.
-* `max_execution_batch_size`: The size of one execution batch on the GPU. This parameter should be set as large as necessary to saturate the GPU, but not bigger. Larger batches will lead to a higher throughput, smaller batches to lower latency. 
-* `input.WAV_DATA.dims`: The maximum number of samples per chunk. The value must be a multiple of `frame_subsampling_factor * chunks_per_frame`.
+* `num_worker_threads`: CPU进行后处理的线程数，比如生成原始lattice结构以及从lattice结构中生成文本。
+* `max_execution_batch_size`: GPU上的单个批尺寸大小。该参数的设定应满足恰好使GPU满负荷。批尺寸越大，吞吐量越高，但延迟会越高。
+* `input.WAV_DATA.dims`: 每个语音数据块包含的最大采样点，必须是`frame_subsampling_factor * chunks_per_frame`的整数倍。
 
 ### 推理过程
 
