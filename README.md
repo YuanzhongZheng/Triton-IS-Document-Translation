@@ -5,3 +5,6 @@
 
 项目源码：[DeepLearningExamples/Kaldi/SpeechRecognition](https://github.com/NVIDIA/DeepLearningExamples/tree/master/Kaldi/SpeechRecognition)
 
+## Topic 2: TIS中集成基于PyTorch的ConvNets
+
+项目源码：[DeepLearningExamples/PyTorch/Classification/ConvNets](https://github.com/NVIDIA/DeepLearningExamples/tree/master/PyTorch/Classification/ConvNets)
