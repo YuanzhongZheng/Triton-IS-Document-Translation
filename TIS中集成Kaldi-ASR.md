@@ -140,7 +140,7 @@ cd DeepLearningExamples/Kaldi/SpeechRecognition
 
 ### 推理过程
 
-Inference is done through simulating concurrent users. Each user is attributed to one utterance from the LibriSpeech dataset. It streams that utterance by cutting it into chunks and gets the final `TEXT` output once the final chunk has been sent. A parameter sets the number of active users being simulated in parallel.  
+在LibriSpeech数据集中，每个用户对应一句话，而TIS正是通过模拟多用户并发来完成推理过程。It streams that utterance by cutting it into chunks and gets the final `TEXT` output once the final chunk has been sent. TIS可以通过设置一个参数来设置并行模拟的活动用户数。  
 
 ### 客户端命令行参数
 
@@ -148,9 +148,9 @@ The client can be configured through a set of parameters that define its behavio
 
 ```
     -v
-    -i <Number of iterations on the dataset>
-    -c <Number of parallel audio channels>
-    -a <Path to the scp dataset file>
+    -i <在数据集上的迭代次数>
+    -c <并行音频通道数>
+    -a <数据库中的scp文件路径>
     -l <Maximum number of samples per chunk. Must correspond to the server config>
     -u <URL for inference service and its gRPC port>
     -o : Only feed each channel at realtime speed. Simulates online clients.
