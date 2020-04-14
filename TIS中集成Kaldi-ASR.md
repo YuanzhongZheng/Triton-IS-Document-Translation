@@ -98,7 +98,7 @@ cd DeepLearningExamples/Kaldi/SpeechRecognition
 
 5. 启动客户端.
 
-下面这个脚本会向服务器发出1000个并行流请求，`-p` 选项会打印从服务器发回的推理结果(`TEXT`)：
+下面这个脚本会向服务器发出1000个并行流请求，`-p`选项会打印从服务器发回的推理结果(`TEXT`)：
 
 `scripts/docker/launch_client.sh -p`
 
@@ -107,11 +107,11 @@ cd DeepLearningExamples/Kaldi/SpeechRecognition
 
 ### 参数
 
-通过`model-repo/` 文件夹的 `config.pbtxt` 来进行参数的配置，用户可以自定义以下选项：
+通过`model-repo/`文件夹的`config.pbtxt`来进行参数的配置，用户可以自定义以下选项：
 
 ####  模型路径
 
-下列参数都可以替换成用户自己的Kaldi模型：
+下列参数文件都可以替换成用户自己的Kaldi模型：
 
 * `mfcc_filename`
 * `ivector_filename`
@@ -121,7 +121,7 @@ cd DeepLearningExamples/Kaldi/SpeechRecognition
 
 #### 模型配置
 
-模型配置参数传输给模型并对准确率和性能有一定的影响。模型参数通常是Kaldi-ASR的参数，这意味着你可以复用Kaldi-ASR在CPU上的参数。
+下列模型配置参数用来传输给模型，它们会对模型的准确率和性能产生影响。模型参数通常是Kaldi-ASR的参数，这意味着用户可以复用Kaldi-ASR在CPU版本上的参数。
 
 * `beam`
 * `lattice_beam`
@@ -135,7 +135,7 @@ cd DeepLearningExamples/Kaldi/SpeechRecognition
 
 * `max_batch_size`: 给定时间内的最大推理通道数。假如值为`4096`，那么一个实例将最多处理4096个并发请求。
 * `num_worker_threads`: CPU进行后处理时的线程数，比如生成原始lattice结构以及从lattice结构中生成文本。
-* `max_execution_batch_size`: GPU上的单个批尺寸大小。该参数的设定应满足恰好使GPU满负荷。批尺寸越大，吞吐量越高，但延迟会越高。
+* `max_execution_batch_size`: GPU上的单个批尺寸大小。该参数的设定应满足恰好使GPU满负荷。批尺寸越大，吞吐量越高，但同时延迟也会越高。
 * `input.WAV_DATA.dims`: 每个语音数据块包含的最大采样点，必须是`frame_subsampling_factor * chunks_per_frame`的整数倍。
 
 ### 推理过程
