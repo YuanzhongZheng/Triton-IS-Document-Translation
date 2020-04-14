@@ -39,7 +39,7 @@ NVIDIA团队在这个项目中提供了一个基于`LibriSpeech`的预训练的�
 
 ### 参考模型
 
-这套代码提供的所有测试脚本和基准都使用基于`LibriSpeech`的Kaldi-ASR参考模型[详见此链接](https://github.com/kaldi-asr/kaldi/blob/master/egs/librispeech/s5)，NVIDIA团队完成了训练工作同时发布了一个预训练的模型。
+这个项目提供的所有测试脚本和参考基准都基于`LibriSpeech`的Kaldi-ASR模型[详见此链接](https://github.com/kaldi-asr/kaldi/blob/master/egs/librispeech/s5)，NVIDIA团队完成训练工作的同时，也发布了一个预训练的模型。
 
 ### 默认配置
 
@@ -60,7 +60,7 @@ NVIDIA团队在这个项目中提供了一个基于`LibriSpeech`的预训练的�
 
 ### 必需项 
 
-代码库有两个镜像文件，它们封装了Kaldi，TIS和一些依赖项。另外，请确保已安装[NVIDIA Docker](https://github.com/NVIDIA/nvidia-docker)。
+项目中包含两个镜像文件，它们封装了Kaldi，TIS和一些依赖项。另外，请确保已安装[NVIDIA Docker](https://github.com/NVIDIA/nvidia-docker)。
 
 如果想更快上手NGC容器，可以参考官方NGC文档：
 -   [Getting Started Using NVIDIA GPU Cloud](https://docs.nvidia.com/ngc/ngc-getting-started-guide/index.html)
@@ -90,9 +90,9 @@ cd DeepLearningExamples/Kaldi/SpeechRecognition
 
 `scripts/docker/launch_server.sh`
 
-一旦看到 `Starting Metrics Service at 0.0.0.0:8002`，说明服务端已经成功启动，接下来就可以启动客户端。
+当看到 `Starting Metrics Service at 0.0.0.0:8002`时，说明服务端已成功启动，接下来就可以启动客户端。
 
-目前, 并不支持多GPU模式，默认用GPU 0。你也可以通过`NVIDIA_VISIBLE_DEVICES`来指定具体GPU:
+目前, 项目并不支持多GPU模式，默认用GPU 0。用户也可以通过`NVIDIA_VISIBLE_DEVICES`来指定具体GPU:
 
 `NVIDIA_VISIBLE_DEVICES=<GPUID> scripts/docker/launch_server.sh`
 
