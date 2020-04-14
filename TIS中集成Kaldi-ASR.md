@@ -163,23 +163,23 @@ API还处于实验阶段……
 
 #### 输入
 
-The server execpts chunks of audio each containing up to `input.WAV_DATA.dims` samples. Per default, this corresponds to 510ms of audio per chunk. The last chunk can send a partial chunk smaller than this maximum value. 
+服务端希望发送过来的每个语音数据块可以包含`input.WAV_DATA.dims`个采样数据点，默认情况下对应每个语音块的510ms长度。最后一个语音块比较特殊，可以少于这个值。
 
 The chunk is made of a float array set in the input `WAV_DATA`, with the input `WAV_DATA_DIM` containing the number of samples contained in that chunk. Flags can be set to declare a chunk as a first chunk or last chunk for a sequence. Finally, each chunk from a given sequence is associated with a `CorrelationID`. Every chunk belonging to the same sequence must be given the same `CorrelationID`. 
 
 #### 输出
 
-Once the server receives the final chunk for a sequence (with the `END` flag set), it will generate the output associated with that sequence, and send it back to the client. The end of the sequencing procedure is:
+当服务端接收到了序列语句中的最后一个语音块（由`END`来标识），它将生成该序列的结果同时将结果返回给客户端。最后的处理步骤是：
 
-1. Process the last chunk.
-2. Flush and process the Neural Net context. 
-3. Generate the full lattice for the sequence.
-4. Determinize the lattice.
-5. Find the best path in the lattice.
-6. Generate the text output for that best path.
-7. Send the text back to the client.
+1. 处理最后一个语音数据块。
+2. 在神经网络中处理整个流数据。 
+3. 对这句话生成lattice全路径。
+4. 确定lattice。
+5. 在lattice中找到最佳路径。
+6. 通过最佳路径生成输出文本。
+7. 向客户端发送文本结果。
 
-Even if only the best path is used, we are still generating a full lattice for benchmarking purposes. Partial results (generated after each timestep) are currently not available but will be added in a future release. 
+即使只输出最佳路径，TIS目前仍然会生成用于基准测试的完整lattice。当前版本不支持用户获取每步生成的分步结果，但这个功能会在将来版本中实现。
 
 ### 解析自定义Kaldi-ASR的模型
 
