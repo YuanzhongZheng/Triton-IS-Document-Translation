@@ -135,26 +135,25 @@ cd DeepLearningExamples/Kaldi/SpeechRecognition
 
 * `max_batch_size`: 给定时间内的最大推理通道数。假如值为`4096`，那么一个实例将最多处理4096个并发请求。
 * `num_worker_threads`: CPU进行后处理时的线程数，比如生成原始lattice结构以及从lattice结构中生成文本。
-* `max_execution_batch_size`: GPU上的单个批尺寸大小。该参数的设定应满足恰好使GPU满负荷。批尺寸越大，吞吐量越高，但同时延迟也会越高。
+* `max_execution_batch_size`: GPU上的单个批尺寸大小。该参数的设定应满足恰好使GPU满负荷。批尺寸越大，吞吐量越高，但同时延迟也越高。
 * `input.WAV_DATA.dims`: 每个语音数据块包含的最大采样点，必须是`frame_subsampling_factor * chunks_per_frame`的整数倍。
 
 ### 推理过程
 
-在LibriSpeech数据集中，每个用户对应一句话，而TIS正是通过模拟多用户并发来完成推理过程。It streams that utterance by cutting it into chunks and gets the final `TEXT` output once the final chunk has been sent. TIS可以通过设置一个参数来设置并行模拟的活动用户数。  
+在LibriSpeech数据集中，每个用户请求是一句语音数据流，TIS通过模拟多用户请求来完成推理加速过程。TIS将语音数据流分割成语音块，当发送完最后一个语音块后，TIS将会返回最终`TEXT` 结果。TIS可以通过一个参数来设置并行模拟的活动用户数。  
 
 ### 客户端命令行参数
 
-The client can be configured through a set of parameters that define its behavior. To see the full list of available options and their descriptions, use the `-h` command-line option. The parameters are:
-
+客户端可以通过一系列参数定义来完成配置。用户可以通过命令行选项`-h`来查看所有参数选项以及它们的具体作用。这些参数是：
 ```
     -v
     -i <在数据集上的迭代次数>
     -c <并行音频通道数>
     -a <数据库中的scp文件路径>
-    -l <Maximum number of samples per chunk. Must correspond to the server config>
-    -u <URL for inference service and its gRPC port>
-    -o : Only feed each channel at realtime speed. Simulates online clients.
-    -p : Print text outputs
+    -l <每个语音块的最大采样点数，必须与服务端配置保持一致>
+    -u <推理服务的URL以及它的gRPC端口>
+    -o : 实时给每个通道传输数据，用来模拟在线客户端
+    -p : 打印输出文本结果
 
 ```
 
