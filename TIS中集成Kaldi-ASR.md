@@ -35,7 +35,7 @@ TIS提供了基于Kaldi-ASR功能的自定义后端，它可以在Kaldi-ASR模�
 
 这个项目基于Kaldi-ASR实现了一个应用于TIS框架的自定义后端。这个自定义后端可以在Kaldi-ASR框架中调用GPU来实现性能的大幅提升。TIS为Kaldi ASR推理提供了gRPC流式服务，动态序列批处理，多实例支持的功能。同时，项目中还提供了一个客户端用来实现连接gRPC服务器，发送音频流数据到服务器，接收推理后的结果的功能。(参考[输入、输出](#输入、输出))。有兴趣的用户可以通过此[链接](https://docs.nvidia.com/deeplearning/sdk/tensorrt-inference-server-guide/docs/)获取更多细节和信息。
 
-NVIDIA提供了一个基于`LibriSpeech`的预训练的模型，使得大家可以轻松上手演示和测试(参考 [快速上手](#快速上手))。目前TIS的集成工作和Kaldi-ASR在线GPU流程模型工作还在开发阶段，未来NVIDIA会支持更多功能。比如这个版本并不支持i-vector在Kaldi-ASR在线GPU流程中运行，目前版本中，i-vector被零向量所暂时替换(参考 [已知缺陷](#已知缺陷))。是否支持自定义的其它Kaldi模型还在试验中 (参考 [解析自定义Kaldi-ASR的模型](#解析自定义Kaldi-ASR的模型)).
+NVIDIA团队在这个项目中提供了一个基于`LibriSpeech`的预训练的模型，这使得用户可以轻松上手和测试(参考[快速上手](#快速上手))。目前TIS的集成工作和Kaldi-ASR在线GPU流程模型工作还处于开发阶段，未来NVIDIA会支持更多功能。比如这个版本并不支持i-vector在Kaldi-ASR在线GPU流程中解析，目前版本中的i-vector会被零向量所暂时替换(参考[已知缺陷](#已知缺陷))。此外，是否支持用户自己的其它Kaldi模型还在试验中 (参考 [解析自定义Kaldi-ASR的模型](#解析自定义Kaldi-ASR的模型)).
 
 ### 参考模型
 
