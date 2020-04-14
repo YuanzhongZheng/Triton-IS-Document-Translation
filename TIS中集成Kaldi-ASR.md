@@ -1,6 +1,6 @@
 # TIS中集成Kaldi-ASR
 
-TIS提供了个性化定制的Kaldi-ASR后端，它可以将高性能云推理应用在Kaldi-ASR模型，其中包括TIS和客户端之间的gRPC通信，以及推理请求的批处理。NVIDIA团队负责测试和维护代码库。
+TIS提供了基于Kaldi-ASR功能的自定义后端，它可以在Kaldi-ASR模型应用高性能云推理功能，自定义后端包括了TIS和客户端之间的gRPC通信功能，以及推理请求的批处理功能。NVIDIA团队负责开发维护代码库。
 
 ## 目录
 
