@@ -1,13 +1,13 @@
-# FasterTransformer
+# 快速Transformer网络
 
-This repository provides a script and recipe to run the highly optimized transformer for inference, and it is tested and maintained by NVIDIA.
+这个项目提供了全套脚本和代码来对一个高度优化的Transformer网络进行推理，这个项目由NVIDIA官方团队来开发测试和维护。
 
-## Table Of Contents
-- [Models overview](#model-overview)
-    * [FasterTransformer V1](#model-architecture)
-    * [FasterTransformer V2](#default-configuration)
-    * [Architecture matrix](#feature-support-matrix)
-- [Release notes](#release-notes)
+## 目录
+- [模型概述](#模型概述)
+    * [V1版快速Transformer](#model-architecture)
+    * [V2版快速Transformer](#default-configuration)
+    * [框架图表](#feature-support-matrix)
+- [版本日志](#版本日志)
     * [Changelog](#changelog)
     * [Known issues](#known-issues)
 
@@ -22,22 +22,22 @@ FasterTransformer V1 provides a highly optimized BERT equivalent Transformer lay
 
 FastTransformer V2 adds a highly optimized OpenNMT-tf based decoder and decoding for inference in FasterTransformer V1, including C++ API and TensorFlow op. The experiments show that FasterTransformer V2 can provide 1.5 ~ 11 times speedup on NVIDIA Telsa T4 and NVIDIA Tesla V 100 for inference.
 
-### Architecture matrix
+### 框架图表
 
-The following matrix shows the Architecture Differences between the model.
+下表展示了两个版本的快速Transformer网络的区别：
 
-| Architecure               | Encoder             |Decoder             |
+| 框架               | 编码            |解码             |
 |-----------------------|--------------------------|---------------|
-|FasterTransformer V1  |  Yes |No |
-|FasterTransformer V2  |  Yes |Yes |
+|V1版快速Transformer  |  Yes |No |
+|V2版快速Transformer  |  Yes |Yes |
 
 
-## Release notes
-FasterTransformer V1 will be deprecated on July 2020. 
+## 版本日志
+2020年6月将不再支持V1版快速Transformer
 
-### Changelog
+### 更新日志
 
-March 2020
+2020年3月：
 - Add feature in FasterTransformer 2.0
   - Fix the bug of maximum sequence length of decoder cannot be larger than 128.
   - Add `translate_sample.py` to demonstrate how to translate a sentence by restoring the pretrained model of OpenNMT-tf.
