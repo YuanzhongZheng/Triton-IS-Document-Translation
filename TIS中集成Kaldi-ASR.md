@@ -26,7 +26,7 @@ TIS提供了基于Kaldi-ASR功能的自定义后端，它可以在Kaldi-ASR模�
   * [指标](#指标)
   * [结果](#结果)
 - [版本说明](#版本说明)
-  * [变更日志](#变更日志)
+  * [更新日志](#更新日志)
   * [已知缺陷](#已知缺陷)
 
 ## 解决方案概述
@@ -227,7 +227,7 @@ The models and Kaldi allocators are currently not shared between instances. This
 
 ## 版本说明
 
-### 变更日志
+### 更新日志
 
 2020年1月
 * 首版发布
