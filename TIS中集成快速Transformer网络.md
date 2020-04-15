@@ -47,14 +47,14 @@ FastTransformer V2 adds a highly optimized OpenNMT-tf based decoder and decoding
     - Add a layer normalization layer after decoder.
     - Add a normalization for inputs of decoder
     
-February 2020
- * Release the FasterTransformer 2.0
+2020年2月：
+ * 发布快速Transformer 2.0版本；
  * Provide a highly optimized OpenNMT-tf based decoder and decoding, including C++ API and TensorFlow OP.
  * Refine the sample codes of encoder.
  * Add dynamic batch size feature into encoder op.
 
-July 2019
- * Release the FasterTransformer 1.0
+2019年7月：
+ * 发布快速Transformer 1.0版本；
  * Provide a highly optimized bert equivalent transformer layer, including C++ API, TensorFlow OP and TensorRT plugin.
  
 
